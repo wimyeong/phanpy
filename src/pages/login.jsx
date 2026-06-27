@@ -251,6 +251,8 @@ function Login() {
             }}
             dir="auto"
           />
+      {/* 🌟 只需在你原本的代码上一行加上这个标签 */}
+      <div style={{ display: 'none' }}>
           {instancesSuggestions?.length > 0 ? (
             <ul id="instances-suggestions">
               {instancesSuggestions.map((instance, i) => (
@@ -272,6 +274,8 @@ function Login() {
               <Trans>e.g. &ldquo;mastodon.social&rdquo;</Trans>
             </div>
           )}
+      {/* 🌟 在你原本的代码下一行加上这个收尾标签 */}
+      </div>
           {/* <datalist id="instances-list">
             {instancesList.map((instance) => (
               <option value={instance} />
