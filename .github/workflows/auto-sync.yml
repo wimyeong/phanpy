@@ -1,0 +1,35 @@
+name: Auto Sync Upstream
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # 每天自动运行
+  workflow_dispatch: # 方便你在网页上随时点击手动运行
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: production # 🌟 明确检出你的 production 分支
+          fetch-depth: 0
+      
+      - name: Sync from official upstream
+        run: |
+          # 配置 Git 机器人身份
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          # 添加 Phanpy 官方仓库为上游源 (upstream)
+          git remote add upstream https://github.com/cheeaun/phanpy.git
+          git fetch upstream
+          
+          # 🌟 直接拉取官方的 production 分支代码进行合并
+          git merge upstream/production --no-edit
+          
+          # 🌟 推送回你的 production 分支
+          git push origin production
