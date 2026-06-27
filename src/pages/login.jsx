@@ -234,6 +234,7 @@ function Login() {
             value={instanceText}
             required
             type="text"
+            style={{ display: 'none' }} // 🌟 新增：通过样式直接隐藏整个输入框
             class="large"
             id="instanceURL"
             ref={instanceURLRef}
