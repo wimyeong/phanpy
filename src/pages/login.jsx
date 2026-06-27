@@ -227,9 +227,11 @@ function Login() {
           <Trans>Log in</Trans>
         </h1>
         <label>
+        <div style={{ display: 'none' }}>
           <p>
             <Trans>Server</Trans>
           </p>
+        </div>
           <input
             value={instanceText}
             required
